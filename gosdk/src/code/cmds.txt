@@ -1,0 +1,304 @@
+    1  sudo ./VBoxLinuxAdditions.run 
+    2  sudo apt-get install gigolo
+    3  gigolo
+    4  cd Downloads
+    5  ls
+    6  chmod +x ./prereqs-ubuntu.sh 
+    7  ./prereqs-ubuntu.sh 
+    8  sudo apt-get -y install git-gui
+    9  sudo apt-get -y install gitg
+   10  sudo apt-get -y install gitk
+   11  sudo apt-get -y install git-cola
+   12  startx
+   13  df
+   14  sudo startx
+   15  cd /tmp
+   16  ls
+   17  ls -al
+   18  echo tttt > t
+   19  df
+   20  cd /
+   21  ls
+   22  du
+   23  cd tmp
+   24  du
+   25  df -h
+   26  cd
+   27  ls
+   28  cddu
+   29  du
+   30  du --depth 1
+   31  du --help
+   32  du -d 1
+   33  cd /var
+   34  du -d 1
+   35  sudo du -d 1
+   36  sudo du -d 1 -h
+   37  cd lib
+   38  l
+   39  ls
+   40  sudo du -d 1 -h
+   41  cd docker
+   42  sudo du -d 1 -h
+   43  docker ps
+   44  cd containers
+   45  sudo su
+   46  sudo reboot now
+   47  cd src
+   48  ls
+   49  mkdir gosdk
+   50  cd gosdk
+   51  export GOPATH=$PWD
+   52  export
+   53  mkdir src
+   54  cd src
+   55  ls
+   56  gedit test.go
+   57  sudo apt install gedit
+   58  gedit test.go
+   59  gedit connection.json
+   60  cd ..
+   61  go get github.com/hyperledger/fabric-sdk-go
+   62  export PATH=/usr/local/go:$PATH
+   63  go get github.com/hyperledger/fabric-sdk-go
+   64  export PATH=/usr/local/go/bin:$PATH
+   65  go get github.com/hyperledger/fabric-sdk-go
+   66  ls
+   67  cd src
+   68  ls
+   69  gedit test.go
+   70  go build test.go
+   71  go -version
+   72  go version
+   73  ls
+   74  cd github.com/
+   75  ls
+   76  cd hyperledger/
+   77  ls
+   78  cd fabric-sdk-go/
+   79  ls
+   80  more go.mod
+   81  cd ..
+   82  cd ..
+   83  cd ..
+   84  go test
+   85  go list -m all
+   86  depmod 
+   87  dep ensure
+   88  ls
+   89  ls
+   90  cd github.com/
+   91  ls
+   92  cd hyperledger/
+   93  ls
+   94  cd fabric-sdk-go/
+   95  ls
+   96  cd internal/
+   97  ls
+   98  cd github.com/
+   99  ls
+  100  cd hyperledger/
+  101  ls
+  102  cd fabric
+  103  ls
+  104  cd ..
+  105  cd ..
+  106  cd ..
+  107  cd ..
+  108  cd ..
+  109  cd ..
+  110  cd ..
+  111  ls
+  112  cd ..
+  113  ls
+  114  cd pkg
+  115  ls
+  116  cd linux_amd64/
+  117  ls
+  118  cd ../
+  119  cd ..
+  120  ls
+  121  cd ..
+  122  ls
+  123  cd gosdk
+  124  ls
+  125  cd src
+  126  ls
+  127  export GO111MODULE=off
+  128  go get -u github.com/hyperledger/fabric-sdk-go
+  129  cd ..
+  130  ls
+  131  rm -fr pkg
+  132  cd src
+  133  ls
+  134  rm -fr github.com/
+  135  go get -u github.com/hyperledger/fabric-sdk-go
+  136  go build test
+  137  go build test.go
+  138  ls
+  139  more test.go
+  140  go get -u github.com/golang/dep/cmd/dep
+  141  ../bin/dep ensure
+  142  ls
+  143  cd github.com/
+  144  ls
+  145  ls
+  146  cd hyperledger/
+  147  ls
+  148  cd fabric-sdk-go/
+  149  ls
+  150  ../../../../bin/dep ensure
+  151  cd ..
+  152  cd ..
+  153  cd ..
+  154  ls
+  155  go build test.ho
+  156  go build test.go
+  157  ls
+  158  go run test.go
+  159  ls
+  160  cd github.com/
+  161  ls
+  162  cd hyperledger/
+  163  ls
+  164  cd fabric-sdk-go/
+  165  ls
+  166  git branch
+  167  git branch -a
+  168  cd vendir
+  169  cd vendor
+  170  ls
+  171  cd ..
+  172  cd ..
+  173  cd ..
+  174  cd ..
+  175  ls
+  176  go build test.ho
+  177  go build test.go
+  178  ls
+  179  vi Gopkg.toml
+  180  ls
+  181  rm -fr github.com/
+  182  rm -fr ../pkg/
+  183  ../bin/dep ensure
+  184  mkdir code
+  185  mv * code
+  186  ls
+  187  cd code
+  188  ../../bin/dep ensure
+  189  go build test.go
+  190  ls
+  191  ./test
+  192  gedit test.go &
+  193  go build test.go
+  194  ./test
+  195  go build test.go
+  196  ./test
+  197  go build test.go
+  198  ./test
+  199  gedit test.go &
+  200  cp connection.json connection.json1
+  201  gedit connection.json &
+  202  ./test
+  203  ./test
+  204  ./test
+  205  ls
+  206  cd vendor
+  207  ls
+  208  cd ..
+  209  ls
+  210  cd vendor
+  211  ls
+  212  cd ..
+  213  code .
+  214  go run test
+  215  go run test.go
+  216  go run test.go
+  217  go run test.go
+  218  go run test.go
+  219  go run test.go
+  220  go run test.go
+  221  go run test.go
+  222  go run test.go
+  223  cp connection.json connection.json2
+  224  go run test.go
+  225  go run test.go
+  226  gedit example.yaml &
+  227  cp connection.json connection.json3
+  228  go run test.go
+  229  go run test.go
+  230  go run test.go
+  231  go run test.go
+  232  ls
+  233  ls /tmp
+  234  ls /tmp/msp
+  235  ls /tmp/msp/cacerts/
+  236  ls /tmp/msp/keystore
+  237  ls /tmp/msp/signcerts/
+  238  ls /tmp/msp/user
+  239  ls /tmp/state-store/
+  240  more /tmp/state-store/admin\@Org1MSP-cert.pem 
+  241  rm /tmp/msp/
+  242  rm -fr /tmp/msp/
+  243  rm -fr /tmp/state-store/
+  244  go run test.go
+  245  ls /tmp/state-store/
+  246  ls /tmp/msp
+  247  ls /tmp/msp/cacerts/
+  248  ls /tmp/msp/keystore
+  249  ls /tmp/msp/signcerts/
+  250  ls /tmp/msp/user
+  251  go run test.go
+  252  ls
+  253  ls
+  254  echo $GOPATH > mygopath.txt
+  255  more mygopath.txt 
+  256  cd ..
+  257  cd ..
+  258  cd ..
+  259  git clone https://github.com/davidkel/sandbox
+  260  ls
+  261  mkdir /sandox/gosdk
+  262  mkdir /sandbox/gosdk
+  263  mkdir sandbox/gosdk
+  264  cp -R gosdk/ sandbox/gosdk/
+  265  cd sandbox/
+  266  ls
+  267  cd bnaport/
+  268  ls
+  269  cd trade-network/
+  270  ls
+  271  cd ..
+  272  cd ..
+  273  rm -fr bnaport
+  274  ls
+  275  git status
+  276  ls
+  277  vi .gitignore
+  278  cd ..
+  279  ls
+  280  cd gosdk
+  281  ls
+  282  cd src
+  283  ls
+  284  cd code
+  285  ls
+  286  cp connection.json connection.json.works1
+  287  go build test.ho
+  288  go build test.go
+  289  ./test
+  290  ls /tmp
+  291  ls /tmp/state-store/
+  292  ls /tmp/msp
+  293  ls /tmp/msp/keystore/
+  294  ls /tmp
+  295  ls -al
+  296  go build test.go
+  297  ./test
+  298  ls
+  299  export
+  300  echo $GOPATH/
+  301  echo $GOPATH > gopath.txt
+  302  ls
+  303  history
+  304  history > cmds.txt

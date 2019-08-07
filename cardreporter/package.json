@@ -1,0 +1,10 @@
+{
+  "name": "cardreporter",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "dependencies": {
+    "jsrsasign": "8.0.3",
+    "composer-admin": "0.20.8"
+  }
+}

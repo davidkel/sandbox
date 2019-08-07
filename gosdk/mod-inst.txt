@@ -1,0 +1,30 @@
+- export GOPATH=~/my-github-repos/sandbox/gosdk
+- export PATH=/usr/local/go/bin:$PATH
+- export GO111MODULE=on 
+- in src/code directory: go mod init
+- edit go.mod and add
+```
+require
+github.com/hyperledger/fabric-sdk-go e00befbefdb6deb06b59a697c42e0f3147c91b7e
+```
+This sets it to the commit of master done June 4th
+- go mod download
+
+- find fix for sdk code: identityconfig.go, getServerCerts (it will be write protected)
+
+```
+	for i, certPath := range certFiles {
+		// THIS IS THE CA definition fix to not have to have
+		// TLSCACerts defined added the if statement
+		if len(certPath) > 0 {
+			bytes, err := ioutil.ReadFile(pathvar.Subst(certPath))
+			if err != nil {
+				return nil, errors.WithMessage(err, "failed to load server certs")
+			}
+			serverCerts[i] = bytes
+		}
+	}
+```
+
+- fix the code as required (eg location of connection profile)
+- go build 

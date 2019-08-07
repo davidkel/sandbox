@@ -1,0 +1,9 @@
+{
+  "name": "composercardlist",
+  "version": "0.0.1",
+  "description": "",
+  "author": "",
+  "bin": {
+    "cardlist": "cardlist.js"
+  }
+}

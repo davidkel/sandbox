@@ -1,0 +1,43 @@
+BYFN
+
+- failed to create SDK: failed to create identity manager provider: failed to initialize identity manager for organization: org1: Either a cryptopath or an embedded list of users is required
+- need to add the following to config
+organizations:
+  Org1:
+    cryptoPath: /tmp/byfnorg1crypto   <------
+    mspid: Org1MSP
+
+- failed to enroll the admin user: enroll failed: enroll failed: POST failure of request: POST https://localhost:7054/enroll
+{"hosts":null,"certificate_request":"-----BEGIN CERTIFICATE REQUEST-----\nMIH0MIGcAgEAMBAxDjAMBgNVBAMTBWFkbWluMFkwEwYHKoZIzj0CAQYIKoZIzj0D\nAQcDQgAEvUJSZxLMjFuMkwOwBCCgAlKpt8oKhqKTfidS7SCxlt6DsFhHkZ/ojQOU\n1/1lvKmKyOt35JMMKeGNnPfgFCPOoqAqMCgGCSqGSIb3DQEJDjEbMBkwFwYDVR0R\nBBAwDoIMZGF2ZS1taW50bWFjMAoGCCqGSM49BAMCA0cAMEQCIG3b12nUyN0gsnHf\n8La6e/+D/eyi6N5jxGl7roDxcEC3AiBdL+/HlEfEZyE9otVZe3BF6Kigsc5R26jU\nJhdrB2TaAA==\n-----END CERTIFICATE REQUEST-----\n","profile":"","crl_override":"","label":"","NotBefore":"0001-01-01T00:00:00Z","NotAfter":"0001-01-01T00:00:00Z","CAName":"ca-org1"}: Post https://localhost:7054/enroll: x509: certificate is valid for ca.org1.example.com, not localhost
+- more of a problem now. no verify false option supported, although it is declared.
+
+- if credential store not provided as below, in client section looks like it uses the working directory as default
+well I can find the key for the enroll persisted, but not for the other info such as cert and state store
+
+credentialStore: 
+ path: "/tmp/state-store"
+ cryptoStore: 
+  path: "/tmp/msp"
+
+- no channel: event service creation failed: could not get chConfig cache reference: no channel peers configured for channel [davechannel]
+
+added channel section
+channels: 
+ davechannel: 
+  peers: 
+    peer0.org1.example.com:
+
+
+Does use service discovery by default (not sure how you override this as yet)
+
+debug go grpc calls
+GODEBUG=http2debug=2
+
+GRPC_GO_LOG_VERBOSITY_LEVEL=4
+GRPC_GO_LOG_SEVERITY_LEVEL=INFO (that is the highest)
+
+
+With Go I ensured I couldn't work with a peer from each org and it keeps failing to connect as it chooses them and doesn't 
+handle it.
+
+Problems as well with discovery and the tlsCA cert for the orderer. It works if I define the orderer in the connection profile otherwise it doesn't

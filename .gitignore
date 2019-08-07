@@ -1,0 +1,7 @@
+pkg
+vendor
+node_modules
+gosdk/bin
+gosdk/src/code/test
+github.com
+golang.org

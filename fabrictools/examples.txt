@@ -1,0 +1,23 @@
+# import existing material into wallet
+node walletmanager import -w ~/byfnwallet/ -l networkadmin@org1 -m Org1MSP -c ~/othercode/fabric-samples/first-network/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem -k ~/othercode/fabric-samples/first-network/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/4d6c609e95b153a04020e5f41ae02a8d894ff32197e21798cc3d422a16f6171b_sk
+
+# List wallet contents
+node walletmanager list -w ~/byfnwallet/
+
+# register a user called fred using the ca admin (called admin) in the wallet
+node camanager register -c ~/testtools/ccp-single.json -w ~/testtools/wallet/ -r admin - nfred
+
+# enroll fred into the wallet
+node camanagers enroll -c ~/testtools/ccp-single.json -w ~/testtools/wallet/ -m Org1MSP -n fred -s UEsVrhDLdvqg
+
+
+
+# install and instantiate
+node ccmanager install -f mycc-1.0.0.cds -w ~/devwallet/ -l fabricAdmin -c ~/fabric-dev-servers/DevServer_connection.json
+node ccmanager start -c ~/fabric-dev-servers/DevServer_connection.json -w ~/devwallet/ -l fabricAdmin -i mycc -r 1.0.0 -t golang
+
+# package a cds file
+GOPATH=/home/dave/my-github-repos/bnaport/trade-network/native/fabric-old-go node cdsmanager -f mycc-1.0.0.cds -n mycc -x 1.0.0 -p mycc -t golang
+
+# unpackage a cds file
+node cdsmanager unpack -f mycc-1.0.0.cds

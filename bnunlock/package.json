@@ -1,0 +1,23 @@
+{
+    "name": "bnunlock",
+    "version": "0.0.1-bnunlock.0",
+    "description": "Business Network Unlock Utility",
+    "main": "index.js",
+    "engines": {
+        "node": ">=8",
+        "npm": ">=5"
+    },
+    "scripts": {
+        "start": "node index.js"
+    },
+    "engineStrict": true,
+    "author": "Dave",
+    "license": "Apache-2.0",
+    "dependencies": {
+        "fabric-shim": "1.4.1",
+        "jsrsasign": "8.0.3"
+    },
+    "devDependencies": {
+        "eslint": "^5.16.0"
+    }
+}

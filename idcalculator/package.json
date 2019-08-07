@@ -1,0 +1,9 @@
+{
+  "name": "idcalculator",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "dependencies": {
+    "jsrsasign": "8.0.3"
+  }
+}

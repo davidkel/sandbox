@@ -1,0 +1,10 @@
+{
+  "name": "fabrictools",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "dependencies": {
+    "fabric-network": "1.4.4",
+    "yargs": "13.3.0"
+  }
+}
