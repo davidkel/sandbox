@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.Files;
 
 import org.hyperledger.fabric.gateway.*;
 import org.hyperledger.fabric.gateway.Wallet.Identity;
@@ -16,13 +17,10 @@ public class IBPTest {
 		final String basePath = "/home/dave/testibp";
 		Path walletLoc = Paths.get(basePath, "ibp_wallet");
 		Wallet wallet = Wallet.createFileSystemWallet(walletLoc);
-		String certificate = "-----BEGIN CERTIFICATE-----\n" + 
-				"-----END CERTIFICATE-----";
 		
-		
-		String privateKey = "-----BEGIN PRIVATE KEY-----\n" +
-		"-----END PRIVATE KEY-----";
-		
+		String certificate = new String(Files.readAllBytes(Paths.get(basePath, "cert.pem")));
+		String privateKey = new String(Files.readAllBytes(Paths.get(basePath, "key.pem")));
+
 		Identity id = org.hyperledger.fabric.gateway.Wallet.Identity.createIdentity("DavesMSP", new StringReader(certificate), new StringReader(privateKey));
 		wallet.put("dave", id);
 		
