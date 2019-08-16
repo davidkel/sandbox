@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
+import java.util.EnumSet;
 
 import org.hyperledger.fabric.sdk.ChaincodeID;
 import org.hyperledger.fabric.sdk.Channel;
@@ -18,13 +19,15 @@ import org.hyperledger.fabric.sdk.TransactionProposalRequest;
 import org.hyperledger.fabric.sdk.User;
 import org.hyperledger.fabric.sdk.security.CryptoSuite;
 import org.hyperledger.fabric_ca.sdk.HFCAClient;
+import org.hyperledger.fabric.sdk.Channel.PeerOptions;
+import org.hyperledger.fabric.sdk.Peer.PeerRole;
 
 public class SimpleTest {
-	
+
 	static class MyUser implements User {
 		String mspId;
 		Enrollment enrollment;
-		
+
 		@Override
 		public String getName() {
 			return "gateway";
@@ -49,11 +52,11 @@ public class SimpleTest {
 		public Enrollment getEnrollment() {
 			return enrollment;
 		}
-		
+
 		public void setEnrollment(Enrollment e) {
 			this.enrollment = e;
 		}
-		
+
 		public void setMspId(String m) {
 			mspId = m;
 		}
@@ -61,7 +64,7 @@ public class SimpleTest {
 		@Override
 		public String getMspId() {
 			return mspId;
-		}		
+		}
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -74,33 +77,40 @@ public class SimpleTest {
 		CAInfo cai = conf.getClientOrganization().getCertificateAuthorities().get(0);
 		HFCAClient ca = HFCAClient.createNewInstance(cai);
 		ca.setCryptoSuite(CryptoSuite.Factory.getCryptoSuite());
-		
+
 		Enrollment admin = ca.enroll("admin", "adminpw");
 		MyUser user = new MyUser();
 		user.setEnrollment(admin);
 		user.setMspId("Org1MSP");
 		client.setUserContext(user);
 
-		Channel c = client.loadChannelFromConfig("mychannel", conf);
+		Channel c = client.loadChannelFromConfig("davechannel", conf);
 		Collection<Peer> cp = c.getPeers();
+        Collection<Peer> cpsd = c.getPeers(EnumSet.of(PeerRole.ENDORSING_PEER));
 		Collection<Orderer> co = c.getOrderers();
 		// at this point it appears no connection has been made so should
 		// be able to modify the peers/orderers with the properties
 		System.out.println("stop me here");
+        System.out.println(cpsd);
+
+        System.out.println(cp.toArray(new Peer[0])[0].getProperties());
+        //cp.toArray(new Peer[0])[0].getPeerOptions().setPeerRoles(EnumSet.allOf(PeerRole.class));
 		c.initialize();
-		
+        System.out.println(c.getPeers());
+
 		TransactionProposalRequest request = client.newTransactionProposalRequest();
-		ChaincodeID ccid = ChaincodeID.newBuilder().setName("Downloads").build();
+		ChaincodeID ccid = ChaincodeID.newBuilder().setName("mycc").build();
 		request.setChaincodeID(ccid);
-		request.setFcn("readMyAsset");
+		request.setFcn("query");
 		String[] arguments = { "a" };
 		request.setArgs(arguments);
-		request.setProposalWaitTime(1000);		
-		
-		
+		request.setProposalWaitTime(1000);
+
+
 		Collection<ProposalResponse> resps = c.sendTransactionProposal(request);
 		System.out.println("stop me here");
-		
+        System.out.println(resps);
+
 	}
 
 }
