@@ -51,7 +51,7 @@ const createPeerSections = (peersByMsp, msps) => {
         for (const peer of peersByMsp[mspid].peers) {
             peerSections[peer.name] = {
                 'url': `${protocol}${peer.endpoint}`,
-                'tlsCaCerts': {
+                'tlsCACerts': {
                     pem: msps[mspid].tls_root_certs
                 }
             }
@@ -66,7 +66,7 @@ const createOrdererSections = (orderers, msps) => {
         for (const orderer of orderers[mspid].endpoints) {
             ordererSections[orderer.name] = {
                 'url': `${protocol}${orderer.host}:${orderer.port}`,  // why the difference ?
-                'tlsCaCerts': {
+                'tlsCACerts': {
                     pem: msps[mspid].tls_root_certs
                 }
             }
@@ -138,8 +138,8 @@ const genccp = async (yargs) => {
     const clientMSP = client.getMspid();
 
     //const qpRes = await client.queryPeers({target: orgPeers[0]});  // needs an admin id
-    const ccRes = await client.queryChannels(orgPeers[0]);
-    console.log(ccRes);
+    //const ccRes = await client.queryChannels(orgPeers[0]);
+    //console.log(ccRes);
 
     const channel = client.newChannel(channelName);
     const initOptions = {
@@ -149,6 +149,7 @@ const genccp = async (yargs) => {
 
     await channel.initialize(initOptions);
     const discovery_results = channel._discovery_results;
+    console.log(discovery_results);
 
     const pl = createPeerSections(discovery_results.peers_by_org, discovery_results.msps);
     const ol = createOrdererSections(discovery_results.orderers, discovery_results.msps);
