@@ -49,10 +49,15 @@ const createPeerSections = (peersByMsp, msps) => {
     const peerSections = {};
     for (const mspid in peersByMsp) {
         for (const peer of peersByMsp[mspid].peers) {
-            peerSections[peer.name] = {
-                'url': `${protocol}${peer.endpoint}`,
-                'tlsCACerts': {
-                    pem: msps[mspid].tls_root_certs
+            console.log('peer', peer);
+            if (peer.chaincodes.length > 0) {
+                // only include peers that have chaincodes defined even though they are
+                // part of the channel
+                peerSections[peer.name] = {
+                    'url': `${protocol}${peer.endpoint}`,
+                    'tlsCACerts': {
+                        pem: msps[mspid].tls_root_certs
+                    }
                 }
             }
         }

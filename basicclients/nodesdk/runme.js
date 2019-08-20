@@ -30,12 +30,10 @@ const convertDiscoveredToLocalHost = true;
     client.setCryptoSuite(cSuite);
 
     const CAClient = client.getCertificateAuthority();
-    console.log(CAClient);
     const enrolled = await CAClient.enroll({
         enrollmentID: 'admin',
         enrollmentSecret: 'adminpw'
-    });
-    console.log(enrolled);
+    })
     await client.createUser({
         skipPersistence: true,
         username: 'admin',
@@ -49,10 +47,12 @@ const convertDiscoveredToLocalHost = true;
 
     // get the channel
     // const channel = client.getChannel(); //get the first in the ccp
+    // const initOptions = null;
     // if using a dynamic ccp the above will cause this error
     // TypeError: Cannot convert undefined or null to object
 
     // const channel = client.getChannel('daveschannel'); //get the first in the ccp
+    // const initOptions = null;
     // if using a dynamic ccp the above will cause this error
     // Error: Channel not found for name davechannel
 
@@ -62,8 +62,6 @@ const convertDiscoveredToLocalHost = true;
     const initOptions = {target: orgPeers[0], discover: true, asLocalhost: true};
 
     // init options here
-    console.log('initializing channel');
-    await channel.initialize();
     await channel.initialize(initOptions);
     console.log('channel initialized');
 

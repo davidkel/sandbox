@@ -22,6 +22,12 @@ import org.hyperledger.fabric_ca.sdk.HFCAClient;
 import org.hyperledger.fabric.sdk.Channel.PeerOptions;
 import org.hyperledger.fabric.sdk.Peer.PeerRole;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+import org.hyperledger.fabric.sdk.exception.InvalidArgumentException;
+
+
 public class SimpleTest {
 
 	static class MyUser implements User {
@@ -71,8 +77,8 @@ public class SimpleTest {
 		HFClient client = HFClient.createNewInstance();
 		client.setCryptoSuite(CryptoSuite.Factory.getCryptoSuite());
 
-
-		File configFile = new File("/home/dave/localfabric/ccp.json");
+		//File configFile = new File("/home/dave/my-github-repos/sandbox/basicclients/nodesdk/byfn.json");
+		File configFile = new File("/home/dave/my-github-repos/sandbox/basicclients/nodesdk/byfn-dyn.json");
 		NetworkConfig conf = NetworkConfig.fromJsonFile(configFile);
 		CAInfo cai = conf.getClientOrganization().getCertificateAuthorities().get(0);
 		HFCAClient ca = HFCAClient.createNewInstance(cai);
@@ -84,7 +90,10 @@ public class SimpleTest {
 		user.setMspId("Org1MSP");
 		client.setUserContext(user);
 
-		Channel c = client.loadChannelFromConfig("davechannel", conf);
+        // This call will fail with Caused by: org.hyperledger.fabric.sdk.exception.NetworkConfigurationException: Channel configuration has no channels defined.
+		//Channel c = client.loadChannelFromConfig("davechannel", conf);
+        Channel c = createChannel(client, conf, "davechannel");
+
 		Collection<Peer> cp = c.getPeers();
         Collection<Peer> cpsd = c.getPeers(EnumSet.of(PeerRole.ENDORSING_PEER));
 		Collection<Orderer> co = c.getOrderers();
@@ -113,4 +122,35 @@ public class SimpleTest {
 
 	}
 
+    /*
+     * create the named channel for use with a dynamic CCP
+     */
+    private static Channel createChannel(HFClient client, NetworkConfig networkConfig, String channelName) throws InvalidArgumentException {
+        Channel c = client.newChannel(channelName);
+        List<String> peerNames = networkConfig.getClientOrganization().getPeerNames();
+        for (String name: peerNames) {
+
+            //String url = networkConfig.getPeerUrl(name);
+            //Hack for now until the above is published
+            String url = "NONONO";
+            switch (name) {
+                case "peer0.org1.example.com":
+                    url = "grpcs://peer0.org1.example.com:7051";
+                    break;
+                case "peer1.org1.example.com":
+                    url = "grpcs://peer1.org1.example.com:8051";
+                    break;
+                default:
+                    System.out.println("not expecting " + name);
+            }
+            System.out.println("url=" + url);
+
+            Properties props = networkConfig.getPeerProperties(name);
+            Peer peer = client.newPeer(name, url, props);
+            PeerOptions peerOptions = PeerOptions.createPeerOptions()
+                .setPeerRoles(EnumSet.allOf(PeerRole.class));
+            c.addPeer(peer, peerOptions);
+        }
+        return c;
+    }
 }
