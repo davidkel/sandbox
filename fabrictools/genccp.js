@@ -49,7 +49,6 @@ const createPeerSections = (peersByMsp, msps) => {
     const peerSections = {};
     for (const mspid in peersByMsp) {
         for (const peer of peersByMsp[mspid].peers) {
-            console.log('peer', peer);
             if (peer.chaincodes.length > 0) {
                 // only include peers that have chaincodes defined even though they are
                 // part of the channel
@@ -154,7 +153,6 @@ const genccp = async (yargs) => {
 
     await channel.initialize(initOptions);
     const discovery_results = channel._discovery_results;
-    console.log(discovery_results);
 
     const pl = createPeerSections(discovery_results.peers_by_org, discovery_results.msps);
     const ol = createOrdererSections(discovery_results.orderers, discovery_results.msps);
