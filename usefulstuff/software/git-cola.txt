@@ -1,0 +1,7 @@
+sudo apt-get install python-pyqt5
+sudo apt show git-cola
+sudo apt-get install python3-qtpy, python3-sip, git-core, libjs-jquery, libjs-underscore, libjs-modernizr
+sudo apt-get install python3-qtpy python3-sip git-core libjs-jquery libjs-underscore libjs-modernizr
+
+curl -O https://raw.githubusercontent.com/davidkel/composer-tools/1.4/packages/fabric-dev-servers/fabric-dev-servers.tar.gz
+

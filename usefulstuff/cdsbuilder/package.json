@@ -1,0 +1,29 @@
+{
+  "name": "cds-builder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package:tradeNetwork": "ts-node index.ts build -s ../../../ -d ./ -n trade-network-native",
+    "package:consortiumNetwork": "ts-node index.ts build -s ../../../ -d ./ -n shipment-tracking-network-native",
+    "package:all": "npm run package:tradeNetwork && npm run package:consortiumNetwork",
+    "package:tradeNetwork:prod": "ts-node index.ts buil -s ../../../ -d ./ -n trade-network-native -i",
+    "package:consortiumNetwork:prod": "ts-node index.ts build -s ../../../ -d ./ -n shipment-tracking-network-native -i",
+    "package:all:prod": "npm run package:tradeNetwork && npm run package:consortiumNetwork"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fabric-client": "1.4.4",
+    "fs-extra": "8.1.0",
+    "yargs": "15.0.2"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "8.0.1",
+    "@types/node": "12.12.14",
+    "@types/yargs": "13.0.3",
+    "ts-node": "8.5.2",
+    "typescript": "3.7.2"
+  }
+}

@@ -1,0 +1,5 @@
+git clone --recurse-submodules ssh://git@proxy.sl1374195.sl.edst.ibm.com:7999/hub/trade-network
+git submodule foreach git pull origin master
+git pull --rebase
+git config commit.gpgsign true
+

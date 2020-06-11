@@ -15,7 +15,6 @@ yargs
 })
 .command('importibp', 'import ibp identity', (yargs) => {
     yargs
-    .option('m', {alias: 'mspid', description: 'msp id', require: true})
     .option('j', {alias: 'json', description: 'the json identity file', require: true})
 })
 .command('export', 'export identity', (yargs) => {
@@ -80,12 +79,12 @@ const wallet = new FileSystemWallet(walletLoc);
             console.log(`imported ${label} into ${walletLoc}`);
             break;
         case 'importibp':
-            mspid = yargs.argv.m;
             const ibpfile = yargs.argv.j;
             const ibpid = JSON.parse(fs.readFileSync(ibpfile).toString());
             console.log(ibpid);
             cert = Buffer.from(ibpid.cert, 'base64');
             key = Buffer.from(ibpid.private_key,'base64');
+            mspid = ibpid.msp_id;
             id = X509WalletMixin.createIdentity(mspid, cert.toString(), key.toString());
             await wallet.import(ibpid.name, id);
             console.log(`imported ${ibpid.name} into ${walletLoc}`);

@@ -1,0 +1,20 @@
+# install prereqs-ubuntu
+#sudo apt-get install gedit
+#sudo apt-get install python3-qtpy python3-sip git-core libjs-jquery libjs-underscore libjs-modernizr
+#sudo apt-get install python-pyqt5
+#sudo apt-get install tigervnc-common tigervnc-standalone-server
+
+#!/bin/sh
+
+#xrdb $HOME/.Xresources
+#xsetroot -solid grey
+x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
+x-window-manager &
+# Fix to make GNOME work
+export XKL_XMODMAP_DISABLE=1
+#/etc/X11/Xsession
+unset DBUS_SESSION_BUS_ADDRESS
+unset SESSION_MANAGER
+exec /usr/bin/xfce4-session &
+
+

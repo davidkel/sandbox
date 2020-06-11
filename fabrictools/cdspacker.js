@@ -8,7 +8,7 @@ yargs
     .option('n', {alias: 'ccname', description: 'the chaincode name', require: true})
     .option('x', {alias: 'ccver', description: 'the chaincode version', require: true})
     .option('p', {alias: 'path', description: 'path to the chaincode', require: true})
-    .option('t', {alias: 'cctype', description: 'the chaincode language', require: true})
+    .option('l', {alias: 'cctype', description: 'the chaincode language', require: true})
     .option('m', {alias: 'metaPath', description: 'the path to the metadata', require: false})
 })
 .command('unpack', 'unpackage a cds file')
