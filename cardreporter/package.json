@@ -4,7 +4,7 @@
   "description": "",
   "author": "",
   "dependencies": {
-    "jsrsasign": "8.0.3",
+    "jsrsasign": "8.0.20",
     "composer-admin": "0.20.8"
   }
 }
