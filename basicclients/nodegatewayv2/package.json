@@ -1,13 +1,14 @@
 {
   "name": "testclient",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "fabric-network": "1.4"
+    "fabric-network": "2.2",
+    "js-yaml": "^4.0.0"
   },
   "author": "",
   "license": "ISC"

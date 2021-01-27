@@ -9,13 +9,13 @@ yargs
     yargs
     .option('f', {alias: 'cdsfile', description: 'the cds file to install', require: true})
 })
-.command('start', 'enroll the identity into a wallet', (yargs) => {
+.command('start', 'instantiate a chaincode', (yargs) => {
     yargs
     .option('i', {alias: 'ccid', description: 'chaincode id', require: true})
     .option('r', {alias: 'ccver', description: 'chaincode version', require: true})
     .option('t', {alias: 'cctype', description: 'chaincode language', require: true})
 })
-.command('upgrade', 'enroll the identity into a wallet', (yargs) => {
+.command('upgrade', 'upgrade a chaincode', (yargs) => {
     yargs
     .option('i', {alias: 'ccid', description: 'chaincode id', require: true})
     .option('r', {alias: 'ccver', description: 'chaincode version', require: true})

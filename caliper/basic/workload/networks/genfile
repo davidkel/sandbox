@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Usage: genfile name cert_file privatekey_file > user.json
+cert=$(base64 -w 0 < $2)
+key=$(base64 -w 0 < $3)
+
+echo "{\n    \"name\":\"$1\",\n    \"cert\":\"$cert\",\n    \"private_key\":\"$key\"\n}"
+

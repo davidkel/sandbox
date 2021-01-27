@@ -5,3 +5,7 @@ gosdk/bin
 gosdk/src/code/test
 github.com
 golang.org
+*.log
+package-lock.json
+report.html
+identities
