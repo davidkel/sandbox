@@ -1,3 +1,6 @@
+*
+!*.*
+!/**/
 pkg
 vendor
 node_modules
@@ -9,3 +12,5 @@ golang.org
 package-lock.json
 report.html
 identities
+*.o
+*.so
