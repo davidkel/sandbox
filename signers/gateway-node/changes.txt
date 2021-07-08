@@ -1,0 +1,45 @@
+dist/app.js
+-----------
+// DAVE: ADDED
+// const {initializeHSMSigners, getHSMSigner} = require(path.join(__dirname, '../ext/signerfactory.js'));
+const {initializeHSMSigners, getHSMSignerFunction} = require(path.join(__dirname, '../ext/hsmgatewaysigner.js'));
+
+       // DAVE: ADDED
+        initializeHSMSigners(softHSMOptions.lib, softHSMOptions.label, softHSMOptions.pin);
+        console.log('init HSM Signers completed');
+
+
+        const id1 = await wallet.get(org1UserId);
+
+        // DAVE: ADDED
+        console.log('about to get HSMSigner');
+        getHSMSignerFunction(id1.credentials.certificate);
+        console.log('got HSM Signer');
+
+
+SigningIdentity
+===============
+const path = require('path');
+// DAVE: ADDED
+// const {getHSMSigner} = require(path.join(__dirname, '../../../ext/signerfactory.js'));
+const {getHSMSignerFunction} = require(path.join(__dirname, '../../../ext/hsmgatewaysigner.js'));
+
+               // DAVE: ADDED
+                console.log('about to use my signer');
+                //return getHSMSigner().signSync(Buffer.from(digest, 'hex'));
+                const fn = getHSMSignerFunction();
+                return fn(Buffer.from(digest, 'hex'));
+
+                // return this._signer.sign(Buffer.from(digest, 'hex'), null);
+
+
+
+node_modules/fabric-network/lib/impl/wallet/hsmx509identity.js
+==============================================================
+
+ //const privateKey = await this.cryptoSuite.getKey(publicKey.getSKI());
+
+
+ bccsp_pkcs11.js
+ ---------------
+                //this._pkcs11OpenSession(this._pkcs11, pkcs11Lib, pkcs11Label, pkcs11Slot, pkcs11Pin, pkcs11UserType, pkcs11ReadWrite);
