@@ -1,0 +1,6 @@
+{
+    "eslint.workingDirectories": [
+        "./channels-and-chaincodes/v1sdk",
+        "./channels-and-chaincodes/v2sdk"
+    ]
+}
