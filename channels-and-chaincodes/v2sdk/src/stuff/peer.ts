@@ -43,7 +43,7 @@ export class Peer {
                 const packageId = queryResults.package_id;
                 const label = queryResults.label;
 
-                const result = new InstalledSmartContract(packageId!, label!); 
+                const result = new InstalledSmartContract(packageId!, label!);
 
                 results.push(result);
             }
@@ -53,7 +53,7 @@ export class Peer {
         } catch (error) {
             throw new Error(`Could not get all the installed smart contract packages, received: ${(error as Error).message}`);
         }
-    }        
+    }
 
     async getAllChannels(): Promise<ChannelDetails[]> {
 
@@ -120,7 +120,7 @@ export class Peer {
             const endorsement: Endorsement = channel.newEndorsement(chaincodeID);
 
             // TODO: Could use a wallet
-            const user = User.createUser('', '', this.identity.mspId, this.identity.cert, this.identity.key);         
+            const user = User.createUser('', '', this.identity.mspId, this.identity.cert, this.identity.key);
             const identityContext: IdentityContext = fabricClient.newIdentityContext(user);
             endorsement.build(identityContext, buildRequest as any);
 
@@ -221,7 +221,7 @@ export class Peer {
             throw new Error(`Could not get smart contract definitions, received error: ${(error as Error).message}`);
         }
     }
-    
+
     public async getAllCommittedV2Chaincodes(channel: string): Promise<string[]> {
         const definitions: string[] = [];
 
@@ -246,7 +246,7 @@ export class Peer {
             return definitions;
         } catch (error) {
             throw new Error(`Could not get smart contract definitions, received error: ${(error as Error).message}`);
-        }        
+        }
 
     }
 }
