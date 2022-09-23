@@ -1,0 +1,28 @@
+---
+PeerOrgs:
+- Name: fsc
+  Domain: fsc.example.com
+  EnableNodeOUs: false
+  Users:
+    Count: 5
+    Names:
+    - approver
+    - borrower
+    - lender
+
+  Specs:
+  - Hostname: approver
+    SANS:
+    - localhost
+    - 127.0.0.1
+    - ::1
+  - Hostname: borrower
+    SANS:
+    - localhost
+    - 127.0.0.1
+    - ::1
+  - Hostname: lender
+    SANS:
+    - localhost
+    - 127.0.0.1
+    - ::1

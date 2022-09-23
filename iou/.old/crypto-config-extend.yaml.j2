@@ -1,0 +1,20 @@
+PeerOrgs:
+{% for peerOrg in orgvars_peerOrgs %}
+  - Name: {{ peerOrg }}
+    Domain: {{ peerOrg }}
+    EnableNodeOUs: false
+
+    Specs:
+    {% for fscnode in fscvars_nodesByType %}
+        {% if hostvars[fscnode].own%}
+      - Hostname: {{ fscnode.name }}   # implicitly {{fscnode.name}}.{{peerOrg}}
+        CommonName: {{ fscnode.name }} # overrides the above
+        SANS:
+          - {{ fscnode.name }}
+          - {{ hostvars[fscnode.name].ansible_host }}
+          {% if hostvars[fscnode.name].internal_addr is defined %}
+          - {{ hostvars[fscnode.name].internal_addr }}
+          {% endif %}
+    {% endfor %}
+
+{% endfor %}

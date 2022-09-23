@@ -1,0 +1,265 @@
+---
+# Logging section
+logging:
+ # Spec
+ spec: debug
+ # Format
+ format: '%{color}%{time:2006-01-02 15:04:05.000 MST} [%{module}] %{shortfunc} -> %{level:.4s} %{id:03x}%{color:reset} %{message}'
+fsc:
+  # The FSC id provides a name for this node instance and is used when
+  # naming docker resources.
+  id: fsc.borrower
+  # The networkId allows for logical separation of networks and is used when
+  # naming docker resources.
+  networkId: b37w5d4fqjb47muizw4dmc7r4m
+  # This represents the endpoint to other FSC nodes in the same organization.
+  address: 127.0.0.1:20003
+  # Whether the FSC node should programmatically determine its address
+  # This case is useful for docker containers.
+  # When set to true, will override FSC address.
+  addressAutoDetect: true
+  # GRPC Server listener address
+  listenAddress: 127.0.0.1:20003
+  # Identity of this node, used to connect to other nodes
+  identity:
+    # X.509 certificate used as identity of this node
+    cert:
+      file: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fsc/crypto/peerOrganizations/fsc.example.com/peers/borrower.fsc.example.com/msp/signcerts/borrower.fsc.example.com-cert.pem
+    # Private key matching the X.509 certificate
+    key:
+      file: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fsc/crypto/peerOrganizations/fsc.example.com/peers/borrower.fsc.example.com/msp/keystore/priv_sk
+  # Admin X.509 certificates
+  admin:
+    certs:
+    - /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fsc/crypto/peerOrganizations/fsc.example.com/users/Admin@fsc.example.com/msp/signcerts/Admin@fsc.example.com-cert.pem
+  # TLS Settings
+  # (We use here the same set of properties as Hyperledger Fabric)
+  tls:
+    # Require server-side TLS
+    enabled:  true
+    # Require client certificates / mutual TLS for inbound connections.
+    # Note that clients that are not configured to use a certificate will
+    # fail to connect to the node.
+    clientAuthRequired: false
+    # X.509 certificate used for TLS server
+    cert:
+      file: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fsc/crypto/peerOrganizations/fsc.example.com/peers/borrower.fsc.example.com/tls/server.crt
+    # Private key used for TLS server
+    key:
+      file: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fsc/crypto/peerOrganizations/fsc.example.com/peers/borrower.fsc.example.com/tls/server.key
+    # X.509 certificate used for TLS when making client connections.
+    # If not set, fsc.tls.cert.file will be used instead
+    clientCert:
+      file: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fsc/crypto/peerOrganizations/fsc.example.com/peers/borrower.fsc.example.com/tls/server.crt
+    # Private key used for TLS when making client connections.
+    # If not set, fsc.tls.key.file will be used instead
+    clientKey:
+      file: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fsc/crypto/peerOrganizations/fsc.example.com/peers/borrower.fsc.example.com/tls/server.key
+    # rootcert.file represents the trusted root certificate chain used for verifying certificates
+    # of other nodes during outbound connections.
+    rootcert:
+      file: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fsc/crypto/peerOrganizations/fsc.example.com/peers/borrower.fsc.example.com/tls/ca.crt
+    # If mutual TLS is enabled, clientRootCAs.files contains a list of additional root certificates
+    # used for verifying certificates of client connections.
+    clientRootCAs:
+      files:
+      - /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fsc/crypto/peerOrganizations/fsc.example.com/peers/borrower.fsc.example.com/tls/ca.crt
+    rootCertFile: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fsc/crypto/ca-certs.pem
+  # Keepalive settings for node server and clients
+  keepalive:
+    # MinInterval is the minimum permitted time between client pings.
+    # If clients send pings more frequently, the peer server will
+    # disconnect them
+    minInterval: 60s
+    # Interval is the duration after which if the server does not see
+    # any activity from the client it pings the client to see if it's alive
+    interval: 300s
+    # Timeout is the duration the server waits for a response
+    # from the client after sending a ping before closing the connection
+    timeout: 600s
+  # P2P configuration
+  p2p:
+    # Listening address
+    listenAddress: /ip4/127.0.0.1/tcp/20004
+    # If empty, this is a P2P boostrap node. Otherwise, it contains the name of the FCS node that is a bootstrap node
+    bootstrapNode: approver
+  # The Key-Value Store is used to store various information related to the FSC node
+  kvs:
+    persistence:
+      # Persistence type can be \'badger\' (on disk) or \'memory\'
+      type: badger
+      opts:
+        path: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fsc/nodes/borrower/kvs
+  # HTML Server configuration for REST calls
+  web:
+    enabled: true
+    # HTTPS server listener address
+    address: 0.0.0.0:20005
+    tls:
+      enabled:  true
+      cert:
+        file: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fsc/crypto/peerOrganizations/fsc.example.com/peers/borrower.fsc.example.com/tls/server.crt
+      key:
+        file: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fsc/crypto/peerOrganizations/fsc.example.com/peers/borrower.fsc.example.com/tls/server.key
+      clientRootCAs:
+        files:
+        - /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fsc/crypto/peerOrganizations/fsc.example.com/peers/borrower.fsc.example.com/tls/ca.crt
+    rootCertFile: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fsc/crypto/ca-certs.pem
+  tracing:
+    provider: none
+    udp:
+      address: 127.0.0.1:8125
+  metrics:
+    # metrics provider is one of statsd, prometheus, or disabled
+    provider: prometheus
+    # statsd configuration
+    statsd:
+      # network type: tcp or udp
+      network: udp
+      # statsd server address
+      address: 127.0.0.1:8125
+      # the interval at which locally cached counters and gauges are pushed
+      # to statsd; timings are pushed immediately
+      writeInterval: 10s
+      # prefix is prepended to all emitted statsd metrics
+      prefix:
+
+  # The endpoint section tells how to reach other FSC node in the network.
+  # For each node, the name, the domain, the identity of the node, and its addresses must be specified.
+  endpoint:
+    resolvers:
+    - name: approver
+      domain: fsc.example.com
+      identity:
+        id: approver
+        path: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fsc/crypto/peerOrganizations/fsc.example.com/peers/approver.fsc.example.com/msp/signcerts/approver.fsc.example.com-cert.pem
+      addresses:
+         P2P: 127.0.0.1:20001
+      aliases:
+    - name: lender
+      domain: fsc.example.com
+      identity:
+        id: lender
+        path: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fsc/crypto/peerOrganizations/fsc.example.com/peers/lender.fsc.example.com/msp/signcerts/lender.fsc.example.com-cert.pem
+      addresses:
+      aliases:
+
+
+
+fabric:
+  enabled: true
+  default:
+    default: true
+    BCCSP:
+      Default: SW
+      SW:
+        Hash: SHA2
+        Security: 256
+        FileKeyStore:
+          KeyStore:
+    mspConfigPath: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fabric.default/crypto/peerOrganizations/org2.example.com/peers/borrower.org2.example.com/msp
+    localMspId: Org2MSP
+    mspCacheSize: 500
+    msps:
+    tls:
+      enabled:  true
+      clientAuthRequired: false
+      cert:
+        file: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fabric.default/crypto/peerOrganizations/org2.example.com/peers/borrower.org2.example.com/tls/server.crt
+      key:
+        file: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fabric.default/crypto/peerOrganizations/org2.example.com/peers/borrower.org2.example.com/tls/server.key
+      clientCert:
+        file: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fabric.default/crypto/peerOrganizations/org2.example.com/peers/borrower.org2.example.com/tls/server.crt
+      clientKey:
+        file: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fabric.default/crypto/peerOrganizations/org2.example.com/peers/borrower.org2.example.com/tls/server.key
+      rootcert:
+        file: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fabric.default/crypto/peerOrganizations/org2.example.com/peers/borrower.org2.example.com/tls/ca.crt
+      clientRootCAs:
+        files:
+        - /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fabric.default/crypto/peerOrganizations/org2.example.com/peers/borrower.org2.example.com/tls/ca.crt
+      rootCertFile: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fabric.default/crypto/ca-certs.pem
+      keepalive:
+       client:
+         interval: 60s
+         timeout: 600s
+       server:
+         interval: 60s
+         timeout: 600s
+         minInterval: 60s
+    peers:
+      - address: 127.0.0.1:20020
+        connectionTimeout: 10s
+        tlsEnabled: true
+        tlsRootCertFile: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fabric.default/crypto/ca-certs.pem
+        serverNameOverride:
+    channels:
+      - name: testchannel
+        default: true
+        chaincodes:
+          - name: iou
+            private: false
+    vault:
+      persistence:
+        type: file
+        opts:
+          path: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fsc/nodes/borrower/fabric.default/vault
+    endpoint:
+      resolvers:
+      - name: Org1_peer_0
+        domain: org1.example.com
+        identity:
+          id: Org1_peer_0
+          mspType: bccsp
+          mspID: Org1MSP
+          path: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fabric.default/crypto/peerOrganizations/org1.example.com/peers/Org1_peer_0.org1.example.com/msp/signcerts/Org1_peer_0.org1.example.com-cert.pem
+        addresses:
+           Listen: 127.0.0.1:20013
+        aliases:
+      - name: Org2_peer_0
+        domain: org2.example.com
+        identity:
+          id: Org2_peer_0
+          mspType: bccsp
+          mspID: Org2MSP
+          path: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fabric.default/crypto/peerOrganizations/org2.example.com/peers/Org2_peer_0.org2.example.com/msp/signcerts/Org2_peer_0.org2.example.com-cert.pem
+        addresses:
+           Listen: 127.0.0.1:20020
+        aliases:
+      - name: Org3_peer_0
+        domain: org3.example.com
+        identity:
+          id: Org3_peer_0
+          mspType: bccsp
+          mspID: Org3MSP
+          path: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fabric.default/crypto/peerOrganizations/org3.example.com/peers/Org3_peer_0.org3.example.com/msp/signcerts/Org3_peer_0.org3.example.com-cert.pem
+        addresses:
+           Listen: 127.0.0.1:20027
+        aliases:
+      - name: approver
+        domain: org1.example.com
+        identity:
+          id: approver
+          mspType: bccsp
+          mspID: Org1MSP
+          path: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fabric.default/crypto/peerOrganizations/org1.example.com/peers/approver.org1.example.com/msp/signcerts/approver.org1.example.com-cert.pem
+        addresses:
+        aliases:
+      - name: borrower
+        domain: org2.example.com
+        identity:
+          id: borrower
+          mspType: bccsp
+          mspID: Org2MSP
+          path: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fabric.default/crypto/peerOrganizations/org2.example.com/peers/borrower.org2.example.com/msp/signcerts/borrower.org2.example.com-cert.pem
+        addresses:
+        aliases:
+      - name: lender
+        domain: org3.example.com
+        identity:
+          id: lender
+          mspType: bccsp
+          mspID: Org3MSP
+          path: /home/dave/github-cloned/fabric-smart-client/samples/fabric/iou/testdata/fabric.default/crypto/peerOrganizations/org3.example.com/peers/lender.org3.example.com/msp/signcerts/lender.org3.example.com-cert.pem
+        addresses:
+        aliases:
+
