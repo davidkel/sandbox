@@ -1,0 +1,17 @@
+# ------------------- Web client Configuration -------------------------
+fsc:
+  web:
+    address: borrower0:20002
+    tls:
+      enabled: true
+      cert:
+        file: /root/crypto-config/peerOrganizations/fsc/peers/client1/tls/server.crt
+      # Private key used for TLS server
+      key:
+        file: /root/crypto-config/peerOrganizations/fsc/peers/client1/tls/server.key
+
+      # If mutual TLS is enabled, clientRootCAs.files contains a list of additional root certificates
+      # used for verifying certificates of client connections.
+      clientRootCAs:
+        files:
+        - /root/crypto-config/peerOrganizations/fsc/peers/borrower0/tls/ca.crt

@@ -10,8 +10,8 @@ import (
 	fscnode "github.com/hyperledger-labs/fabric-smart-client/node"
 	fabric "github.com/hyperledger-labs/fabric-smart-client/platform/fabric/sdk"
 
+	views "example.com/iou/views"
 	viewregistry "github.com/hyperledger-labs/fabric-smart-client/platform/view"
-	views "github.com/hyperledger-labs/fabric-smart-client/samples/fabric/iou/views"
 )
 
 func main() {

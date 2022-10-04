@@ -1,16 +1,58 @@
+# Example of the FSC IOU sample in an external repo
+This is the code for the IOU sample, it contains
+1. The IOU Namespace chaincode in `cc`
+2. The Approver
+3. The Borrower
+4. The Lender
+5. A simple client to test it
+
+
+This does not include the core.yaml files that configure the FSC network, those need to be generated based on the fabric network it will work within conjunction with how you intend to deploy each of the FSC nodes, also the client expects a Web Server endpoint to be enabled
+
+The client however does include a core.yaml file but would need changing based on how you deployed everything
+
+```yaml
+# ------------------- Web client Configuration -------------------------
+fsc:
+  web:
+    address: borrower0:20002
+    tls:
+      enabled: true
+      cert:
+        file: /root/crypto-config/peerOrganizations/fsc/peers/client1/tls/server.crt
+      # Private key used for TLS server
+      key:
+        file: /root/crypto-config/peerOrganizations/fsc/peers/client1/tls/server.key
+
+      # If mutual TLS is enabled, clientRootCAs.files contains a list of additional root certificates
+      # used for verifying certificates of client connections.
+      clientRootCAs:
+        files:
+        - /root/crypto-config/peerOrganizations/fsc/peers/borrower0/tls/ca.crt
+```
+
+- address is the web endpoint of the borrower that is all the client does is a single request to the borrower
+- tls.enabled must always be true, it can't be anything else as the web interface uses mutual TLS
+- cert and key are the client TLS files
+- clientRootCAs actually contain the CA file for the server in this case the borrower
+
+WARNING: These keys are likely to change as they aren't consistent with the Core.yaml format for the servers and in fact are currently confusing
+
+Note that an FSC Node has the following possible endpoints
+1. a GRPC endpoint (ie a GRPC Server)
+2. a HTTPS endpoint (ie a Web Server)
+3. a P2P endpoint
+
+## Info about building
 go mod tidy -compat=1.17
-
 also used a clean go mod cache
-export GOPATH=~/github-mine/sandbox
 
 
-An FSC node has
-1. a grpc server endpoint
-2. a p2p endpoint
-3. a web REST server endpoint (optional)
 
 
-shame I can't install fsccli
+
+## Note that you cant install fsccli as a standalone utility (eg to use the internal cryptogen tool)
+```
 go install github.com/hyperledger-labs/fabric-smart-client/cmd/fsccli@latest
 go install: github.com/hyperledger-labs/fabric-smart-client/cmd/fsccli@latest (in github.com/hyperledger-labs/fabric-smart-client@v0.0.0-20220829121531-bfb66997d570):
         The go.mod file for the module providing named packages contains one or
@@ -46,4 +88,4 @@ go build github.com/hyperledger-labs/fabric-smart-client/cmd/fsccli
         go get github.com/hyperledger-labs/fabric-smart-client/integration/nwo/common@v0.0.0-20220829121531-bfb66997d570
 ../pkg/mod/github.com/hyperledger-labs/fabric-smart-client@v0.0.0-20220829121531-bfb66997d570/integration/nwo/common/builder.go:24:2: missing go.sum entry for module providing package gopkg.in/src-d/go-git.v4/plumbing (imported by github.com/hyperledger-labs/fabric-smart-client/integration/nwo/common); to add:
         go get github.com/hyperledger-labs/fabric-smart-client/integration/nwo/common@v0.0.0-20220829121531-bfb66997d570
-
+```
