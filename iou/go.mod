@@ -3,7 +3,7 @@ module example.com/iou
 go 1.17
 
 require (
-	github.com/hyperledger-labs/fabric-smart-client v0.0.0-20221006090411-b64c9c337d16
+	github.com/hyperledger-labs/fabric-smart-client v0.0.0-20221012163137-ae2092b4d78e
 	github.com/pkg/errors v0.9.1
 )
 
