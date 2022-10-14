@@ -1,7 +1,7 @@
 # ------------------- Web client Configuration -------------------------
 fsc:
   web:
-    address: borrower0:20002
+    address: issuer0:20002
     tls:
       enabled: true
       clientCert:
@@ -9,4 +9,4 @@ fsc:
       clientKey:
         file: /root/crypto-config/peerOrganizations/fsc/peers/client1/tls/server.key
       serverRootCert:
-        file: /root/crypto-config/peerOrganizations/fsc/peers/borrower0/tls/ca.crt
+        file: /root/crypto-config/peerOrganizations/fsc/peers/issuer0/tls/ca.crt
