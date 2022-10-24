@@ -123,3 +123,14 @@ go build github.com/hyperledger-labs/fabric-smart-client/cmd/fsccli
 ../pkg/mod/github.com/hyperledger-labs/fabric-smart-client@v0.0.0-20220829121531-bfb66997d570/integration/nwo/common/builder.go:24:2: missing go.sum entry for module providing package gopkg.in/src-d/go-git.v4/plumbing (imported by github.com/hyperledger-labs/fabric-smart-client/integration/nwo/common); to add:
         go get github.com/hyperledger-labs/fabric-smart-client/integration/nwo/common@v0.0.0-20220829121531-bfb66997d570
 ```
+
+
+### using NWO to create a network for testing
+
+You need to download the fabric binaries and store then in a directory eg $HOME/fabric/bin then
+
+```shell
+export FAB_BINS=$HOME/fabric/bin
+```
+
+build and run the integration cmd as required
