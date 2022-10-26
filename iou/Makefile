@@ -24,3 +24,6 @@ clean:
 	-rm cmd/lender/lender
 	-rm cmd/approver/approver
 	-rm cmd/client/client
+	-rm cmd/iou/iou
+	-rm -fr integration/cmd
+    -rm integration/integration
