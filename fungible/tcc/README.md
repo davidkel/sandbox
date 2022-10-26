@@ -13,3 +13,17 @@ info to build it
       policy: AND ('Org1MSP.member')
       lang: golang
       collectionsconfig: ""
+
+hopefully won't have to vendor it but I will need a go.mod file
+
+to generate the PP json file
+tokengen gen dlog -a ../testdata/token/crypto/default-testchannel-tns/auditor/auditors/peerOrganizations/Orgauditor.example.com/users/auditor@Orgauditor.example.com/msp/ -i ../testdata/token/crypto/default-testchannel-tns/idemix/ -o ./test
+
+update params.go with info from rawdata
+
+```
+package tcc
+
+const Params = "eyJ...NH0="
+```
+
