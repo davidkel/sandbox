@@ -1,4 +1,4 @@
-module example.com/tcc
+module example.com/cc
 
 go 1.18
 

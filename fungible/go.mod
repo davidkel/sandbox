@@ -5,8 +5,6 @@ go 1.18
 require (
 	github.com/hyperledger-labs/fabric-smart-client v0.0.0-20221024090004-cf9ea57be9ad
 	github.com/hyperledger-labs/fabric-token-sdk v0.0.0-20221024141420-20cf1e2d578e
-	github.com/hyperledger/fabric-chaincode-go v0.0.0-20210718160520-38d29fabecb9
-	github.com/hyperledger/fabric-protos-go v0.0.0-20220315113721-7dc293e117f7
 	github.com/pkg/errors v0.9.1
 )
 
@@ -77,8 +75,10 @@ require (
 	github.com/hyperledger-labs/weaver-dlt-interoperability/sdks/fabric/go-sdk v1.2.3-alpha.1.0.20210812140206-37f430515b8c // indirect
 	github.com/hyperledger/fabric v1.4.0-rc1.0.20220808214918-83596078d0c3 // indirect
 	github.com/hyperledger/fabric-amcl v0.0.0-20210603140002-2670f91851c8 // indirect
+	github.com/hyperledger/fabric-chaincode-go v0.0.0-20210718160520-38d29fabecb9 // indirect
 	github.com/hyperledger/fabric-lib-go v1.0.0 // indirect
 	github.com/hyperledger/fabric-private-chaincode v0.0.0-20210907122433-d56466264e4d // indirect
+	github.com/hyperledger/fabric-protos-go v0.0.0-20220315113721-7dc293e117f7 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/ipfs/go-cid v0.1.0 // indirect
 	github.com/ipfs/go-datastore v0.5.1 // indirect

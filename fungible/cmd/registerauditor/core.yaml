@@ -1,0 +1,12 @@
+# ------------------- Web client Configuration -------------------------
+fsc:
+  web:
+    address: auditor0:20002
+    tls:
+      enabled: true
+      clientCert:
+        file: /root/crypto-config/peerOrganizations/fsc/peers/client1/tls/server.crt
+      clientKey:
+        file: /root/crypto-config/peerOrganizations/fsc/peers/client1/tls/server.key
+      serverRootCert:
+        file: /root/crypto-config/peerOrganizations/fsc/peers/auditor0/tls/ca.crt
