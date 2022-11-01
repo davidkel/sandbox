@@ -21,7 +21,8 @@ issuer:
 	cd cmd/issuer && go build
 
 client:
-	cd cmd/client && go build
+	cd cmd/registerauditor && go build
+	cd cmd/fungible && go build
 
 .PHONY : clean
 clean:
